@@ -17,7 +17,7 @@ fn main() {
         .dyn_into::<HtmlCanvasElement>()
         .unwrap();
 
-    render_plot(canvas).unwrap();
+    let _tfm_fn = render_plot(canvas).unwrap();
 }
 
 fn render_plot(
@@ -33,9 +33,7 @@ fn render_plot(
 
     let x_range = Utc::now()..(Utc::now() + Duration::minutes(10));
     let y_range = 0i32..10i32;
-    let data = (0..=10)
-        .enumerate()
-        .map(|(i, n)| (Utc::now() + Duration::minutes(i as i64), n as i32));
+    let data = (0..=10).map(|n| (Utc::now() + Duration::minutes(n as i64), n as i32));
 
     let mut chart = ChartBuilder::on(&draw_area)
         .margin(25u32)
